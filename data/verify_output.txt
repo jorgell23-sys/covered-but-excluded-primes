@@ -1,0 +1,107 @@
+[0] The front page: what was found, before anything else
+  PASS  README.md: six parts, in order, at the top
+  PASS  README.es.md: six parts, in order, at the top
+  PASS  RESULT.md: six parts, in order, at the top
+
+[1] The criterion: p has an incoming arrow  <=>  F has a root mod p
+  PASS  x+1            (sigma*)                  exhaustive over every residue class
+  PASS  x^2+1          (Phi_4)                   exhaustive over every residue class
+  PASS  x^2+x+1        (Phi_3)                   exhaustive over every residue class
+  PASS  x^2-x+1        (Phi_6)                   exhaustive over every residue class
+  PASS  x^4+x^3+x^2+x+1 (Phi_5)                  exhaustive over every residue class
+  PASS  x^4+1          (Phi_8)                   exhaustive over every residue class
+  PASS  x^4+x^3+2x^2+x+1 (Phi_3Phi_4)            exhaustive over every residue class
+  PASS  x^3-x-1        (S_3)                     exhaustive over every residue class
+  PASS  x^3+x^2-2x-1   (C_3)                     exhaustive over every residue class
+  PASS  x^5+x^4-4x^3-3x^2+3x+1 (C_5)             exhaustive over every residue class
+  PASS  x^4-x-1        (S_4)                     exhaustive over every residue class
+  PASS  x^5-x-1        (S_5)                     exhaustive over every residue class
+  PASS  x^2-x-1                                  exhaustive over every residue class
+
+[1b] Every prime the criterion calls covered gets an explicit witness
+  PASS  x+1            (sigma*)                  a prime q and e with p | F(q^e)
+  PASS  x^2+1          (Phi_4)                   a prime q and e with p | F(q^e)
+  PASS  x^2+x+1        (Phi_3)                   a prime q and e with p | F(q^e)
+  PASS  x^2-x+1        (Phi_6)                   a prime q and e with p | F(q^e)
+  PASS  x^4+x^3+x^2+x+1 (Phi_5)                  a prime q and e with p | F(q^e)
+  PASS  x^4+1          (Phi_8)                   a prime q and e with p | F(q^e)
+  PASS  x^4+x^3+2x^2+x+1 (Phi_3Phi_4)            a prime q and e with p | F(q^e)
+  PASS  x^3-x-1        (S_3)                     a prime q and e with p | F(q^e)
+  PASS  x^3+x^2-2x-1   (C_3)                     a prime q and e with p | F(q^e)
+  PASS  x^5+x^4-4x^3-3x^2+3x+1 (C_5)             a prime q and e with p | F(q^e)
+  PASS  x^4-x-1        (S_4)                     a prime q and e with p | F(q^e)
+  PASS  x^5-x-1        (S_5)                     a prime q and e with p | F(q^e)
+  PASS  x^2-x-1                                  a prime q and e with p | F(q^e)
+
+[1c] Theorem 31 is the cyclotomic case: covered  <=>  m | p-1
+  PASS  Phi_3: covered exactly when 3 | p-1 (p not dividing 3)
+  PASS  Phi_4: covered exactly when 4 | p-1 (p not dividing 4)
+  PASS  Phi_5: covered exactly when 5 | p-1 (p not dividing 5)
+  PASS  Phi_6: covered exactly when 6 | p-1 (p not dividing 6)
+  PASS  Phi_8: covered exactly when 8 | p-1 (p not dividing 8)
+
+[2] The density of uncovered primes is the proportion of fixed-point-free elements of Gal(F)
+  PASS  x+1            (sigma*)                  predicted 0.00000  -- measured 0.00000 over 3245 primes
+  PASS  x^2+1          (Phi_4)                   predicted 0.50000  -- measured 0.50324 over 3245 primes
+  PASS  x^2+x+1        (Phi_3)                   predicted 0.50000  -- measured 0.50354 over 3245 primes
+  PASS  x^2-x+1        (Phi_6)                   predicted 0.50000  -- measured 0.50354 over 3245 primes
+  PASS  x^4+x^3+x^2+x+1 (Phi_5)                  predicted 0.75000  -- measured 0.75069 over 3245 primes
+  PASS  x^4+1          (Phi_8)                   predicted 0.75000  -- measured 0.75439 over 3245 primes
+  PASS  x^4+x^3+2x^2+x+1 (Phi_3Phi_4)            predicted 0.25000  -- measured 0.25085 over 3245 primes
+  PASS  x^3-x-1        (S_3)                     predicted 0.33333  -- measured 0.33559 over 3245 primes
+  PASS  x^3+x^2-2x-1   (C_3)                     predicted 0.66667  -- measured 0.66872 over 3245 primes
+  PASS  x^5+x^4-4x^3-3x^2+3x+1 (C_5)             predicted 0.80000  -- measured 0.80031 over 3245 primes
+  PASS  x^4-x-1        (S_4)                     predicted 0.37500  -- measured 0.37935 over 3245 primes
+  PASS  x^5-x-1        (S_5)                     predicted 0.36667  -- measured 0.36364 over 3245 primes
+  PASS  x^2-x-1                                  predicted 0.50000  -- measured 0.50354 over 3245 primes
+
+[2b] Stronger: the WHOLE distribution of the number of roots
+  PASS  x^3-x-1 (S_3)    every root-count density matches  -- worst: 3 roots, 0.16240 vs 0.16667 (0.65 SE)
+  PASS  x^4-x-1 (S_4)    every root-count density matches  -- worst: 4 roots, 0.03667 vs 0.04167 (1.42 SE)
+
+[3] Phi_6 and the prime 3: covered, and it divides nothing in S(f)
+  PASS  the only root of x^2-x+1 mod 3 is 2
+  PASS  that root has order 2 mod 3
+  PASS  so 3 IS covered by the criterion
+  PASS  of the 511 primes with an arrow into 3, none is itself covered  -- covered ones: []
+  PASS  every prime pointing at 3 is 2 mod 3
+  PASS  every covered prime other than 3 is 1 mod 6 -- the two sets are disjoint
+
+[3b] The same thing on the integers, with a positive control
+  PASS  S(Phi_6) up to 400000: 3 elements above 1, none divisible by 3  -- elements: [100009, 175273, 274939]
+  PASS  POSITIVE CONTROL: the same search on sigma* finds 261 elements divisible by 3  -- of 344
+  PASS  every prime appearing in S(Phi_6) is covered  -- primes: [7, 13, 31, 73, 157, 181]
+
+[4] Where the one-step criterion can fail: only at ramified primes
+  PASS  the sweep of 310 polynomials finds 14 covered-but-excluded primes in 14 of them
+  PASS  every one of them is ramified, i.e. F mod p has a repeated root  -- unramified: []
+
+[5] The lower bound (cycles) meets the upper bound (fixed point)
+  PASS  no gap between the two bounds over 310 polynomials x 168 primes  -- gaps: 0
+
+[5b] Certificates, verified with full integers
+  PASS  x+1            (sigma*)                  430 certificates, each a real n in S(f)
+  PASS  x^2+1          (Phi_4)                   212 certificates, each a real n in S(f)
+  PASS  x^2+x+1        (Phi_3)                   208 certificates, each a real n in S(f)
+  PASS  x^2-x+1        (Phi_6)                   207 certificates, each a real n in S(f)
+  PASS  x^4+x^3+x^2+x+1 (Phi_5)                  104 certificates, each a real n in S(f)
+  PASS  x^4+1          (Phi_8)                   102 certificates, each a real n in S(f)
+  PASS  x^4+x^3+2x^2+x+1 (Phi_3Phi_4)            321 certificates, each a real n in S(f)
+  PASS  x^3-x-1        (S_3)                     285 certificates, each a real n in S(f)
+
+[6] One certificate, written out
+  PASS  13 lies on the cycle 13^3 -> 19^2  -- n = 793117
+
+[7] EXTERNAL control -- OEIS A175200, published independently
+  PASS  recomputing { n : rad(n) | sigma(n) } reproduces the 49 published terms
+
+[8] The live numbers on docs/ are the ones computed here
+  PASS  docs/index.html: 8 live numbers agree
+  PASS  docs/es/index.html: 8 live numbers agree
+
+[9] Every figure equals what its generator produces from today's data
+  PASS  docs/figures/certificate.svg matches its generator
+  PASS  docs/figures/densities.svg matches its generator
+  PASS  docs/figures/disjoint.svg matches its generator
+
+ALL CHECKS PASS

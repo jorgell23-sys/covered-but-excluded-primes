@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "Covered but excluded primes: which primes divide an element of { n : rad(n) | f(n) }"
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - family-names: "Ellena Godoy"
+    given-names: "Jorge"
+    email: jorgell23@gmail.com
+abstract: >-
+  For a multiplicative f with f(q^e) = F(q^e) and F(0) = +-1, a prime has an
+  incoming arrow in the covering digraph of f exactly when F has a root modulo
+  that prime, and the density of the primes without one is the proportion of
+  fixed-point-free elements of the Galois group of F (Frobenius, 1896, applied
+  to this object). Having an incoming arrow is necessary but NOT sufficient for
+  a prime to divide an element of S(f) = { n : rad(n) | f(n) }: for
+  f(q^e) = q^(2e) - q^e + 1 the prime 3 is covered and divides nothing. Every
+  such failure occurs at a prime ramified in the splitting field of F, hence at
+  finitely many primes per F. Primes on a directed cycle do divide an element,
+  with a finite certificate.
+keywords:
+  - number theory
+  - arithmetic functions
+  - covering digraph
+  - Frobenius density theorem
+  - prime-perfect numbers
+  - radical
+license: CC-BY-4.0
+repository-code: "https://github.com/jorgell23-sys/covered-but-excluded-primes"
+url: "https://jorgell23-sys.github.io/covered-but-excluded-primes/"
+version: 1.0.0
+date-released: 2026-09-06

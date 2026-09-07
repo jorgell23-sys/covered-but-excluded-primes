@@ -1,0 +1,19 @@
+# Sweep: monic F of degree 2..4, coefficients in [-2,2], F(0)=+-1,
+# against the primes below 1000.  Lists every prime that has an
+# incoming arrow but survives no further iteration.
+# F	lost prime	F mod p squarefree? (unramified)
+[1, -1, 1]	3	no (ramified)
+[1, -1, -1]	5	no (ramified)
+[1, 1, -1]	5	no (ramified)
+[1, -2, -1, 1]	7	no (ramified)
+[1, -1, -2, 1]	7	no (ramified)
+[1, 1, -2, -1]	7	no (ramified)
+[1, 2, -1, -1]	7	no (ramified)
+[1, -2, -1, 2, 1]	5	no (ramified)
+[1, -2, 0, 1, 1]	3	no (ramified)
+[1, -1, -2, -1, 1]	17	no (ramified)
+[1, -1, 1, -1, 1]	5	no (ramified)
+[1, 1, -2, 1, 1]	17	no (ramified)
+[1, 1, 0, -2, 1]	3	no (ramified)
+[1, 2, -1, -2, 1]	5	no (ramified)
+# 310 polynomials swept, 14 covered-but-excluded primes

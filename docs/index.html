@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A prime that is covered and still divides nothing</title>
+<style>
+ :root{--ink:#16202b;--soft:#54636f;--line:#d3dbe3;--bg:#fbfcfd;--card:#ffffff;
+       --accent:#1d5fa8;--good:#1d7a53;--bad:#b3402a}
+ @media (prefers-color-scheme:dark){
+  :root{--ink:#e6edf4;--soft:#a4b3c1;--line:#33404d;--bg:#0e151d;--card:#141d27;
+        --accent:#6cabe8;--good:#4fbf8b;--bad:#e0755c}}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);
+      font:16px/1.65 ui-sans-serif,system-ui,"Segoe UI",Helvetica,Arial,sans-serif}
+ main{max-width:820px;margin:0 auto;padding:32px 20px 96px}
+ h1{font-size:31px;line-height:1.2;margin:.4em 0 .2em}
+ h2{font-size:22px;margin:2.2em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
+ h3{font-size:17px;margin:1.6em 0 .4em}
+ p,li{color:var(--ink)}
+ .lead{font-size:18px;color:var(--soft)}
+ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.94em}
+ .box{background:var(--card);border:1px solid var(--line);border-radius:10px;
+      padding:16px 18px;margin:18px 0}
+ .box.try{border-left:4px solid var(--accent)}
+ .box.no{border-left:4px solid var(--bad)}
+ table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px}
+ th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+ th{background:var(--card)}
+ img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0}
+ details{margin:10px 0}
+ summary{cursor:pointer;color:var(--accent)}
+ .lang{float:right;font-size:14px}
+ .fact{font-weight:600}
+ footer{margin-top:60px;color:var(--soft);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<p class="lang"><a href="es/">Español</a></p>
+
+<h1>A prime that is covered — and still divides nothing</h1>
+<p class="lead">How a rule about prime numbers can be true one step at a time
+and false altogether. Written for someone who has never seen this before.</p>
+
+<h2 id="question">1. The question, with apples and oranges</h2>
+<p>Take a whole number, say 12. Its prime building blocks are 2 and 3, because
+12 = 2 × 2 × 3. Now add up <em>all</em> the numbers that divide 12 — that is
+1 + 2 + 3 + 4 + 6 + 12 = 28.</p>
+<p>Here is the game. We ask: <strong>do the building blocks of the number also
+divide that sum?</strong> For 12 the blocks are 2 and 3. The sum is 28. Now 2
+divides 28, but 3 does not — 28 ÷ 3 is not whole. So 12 <strong>loses</strong>
+the game.</p>
+<p>Try 6 instead. Its blocks are 2 and 3, and the sum of its divisors is
+1 + 2 + 3 + 6 = 12. Both 2 and 3 divide 12. So 6 <strong>wins</strong>.</p>
+<p>The winners form a list: 6, 24, 28, 40, 54, 96, 120, … Someone catalogued it
+years ago. The question this page is about is a different one, and much more
+basic:</p>
+<blockquote><p><strong>Which prime numbers are allowed to appear inside a
+winner at all?</strong></p></blockquote>
+<p>You can play the same game with other recipes instead of "sum of divisors".
+This page uses a recipe that turns a prime block <span class="mono">q</span>
+raised to a power into another number, and asks the same question. And the
+answer has a surprise in it.</p>
+
+<h2 id="words">2. Five words, each with a small number attached</h2>
+<table>
+<tr><th>Word</th><th>What it means</th><th>Smallest example</th></tr>
+<tr><td><strong>prime</strong></td><td>a number bigger than 1 whose only whole
+divisors are 1 and itself</td><td>2, 3, 5, 7, 11, 13</td></tr>
+<tr><td><strong>building blocks</strong></td><td>the distinct primes that
+multiply to give the number</td><td>the blocks of 12 = 2·2·3 are 2 and 3</td></tr>
+<tr><td><strong>recipe</strong></td><td>a fixed rule that turns each block and
+its power into a number</td><td>our recipe turns 7 into 7² − 7 + 1 = 43</td></tr>
+<tr><td><strong>covered</strong></td><td>a prime <em>p</em> is covered when
+<em>some</em> other prime block produces a number that <em>p</em> divides</td>
+<td>3 is covered, because 2² − 2 + 1 = 3</td></tr>
+<tr><td><strong>winner</strong></td><td>a number all of whose blocks are
+covered by the <em>other</em> blocks of that same number</td>
+<td>100009 = 7² · 13 · 157</td></tr>
+</table>
+
+<h2 id="recipe">3. The recipe, step by step</h2>
+<p>Our recipe takes a prime block <span class="mono">q</span> raised to the
+power <span class="mono">e</span> and returns
+<span class="mono">q<sup>2e</sup> − q<sup>e</sup> + 1</span>. So:</p>
+<ul>
+<li>block 2 to the first power → 4 − 2 + 1 = <strong>3</strong></li>
+<li>block 7 to the first power → 49 − 7 + 1 = <strong>43</strong></li>
+<li>block 13 to the third power → 13⁶ − 13³ + 1 = <strong>4824613</strong>,
+which is 19 × 271 × 937 — so 19 divides it</li>
+</ul>
+<p>To decide whether a number is a winner, you write down its blocks, apply the
+recipe to each one, multiply the results, and check that every block divides
+that product.</p>
+<p>Now draw arrows. Put an arrow from block <span class="mono">q</span> to
+prime <span class="mono">p</span> whenever the recipe applied to some power of
+<span class="mono">q</span> gives a number that <span class="mono">p</span>
+divides. Then a number is a winner exactly when, in the picture of its own
+blocks, <strong>every block has at least one arrow coming in</strong>.</p>
+<img src="figures/disjoint.svg" alt="Two rows of primes that never meet">
+
+<h2 id="try">4. One you can do yourself</h2>
+<div class="box try">
+<p><strong>Is 3 covered?</strong> Apply the recipe to the block 2, first power:
+2² − 2 + 1 = 3. Does 3 divide 3?</p>
+<details><summary>Answer</summary>
+<p>Yes. So the prime 3 <em>is</em> covered: there is an arrow into it, coming
+from 2. In fact there are many — counting only primes below 8000, exactly
+<span class="fact" data-fact="into3">511</span> of them send an arrow into 3.</p>
+</details>
+</div>
+<div class="box try">
+<p><strong>Now the catch.</strong> Every prime that sends an arrow into 3 leaves
+remainder 2 when you divide it by 3 — check it with 2, 5, 11, 17, 23. And every
+prime that is <em>itself</em> covered leaves remainder 1 when divided by 6 —
+check with 7, 13, 19, 31. Can a prime do both?</p>
+<details><summary>Answer</summary>
+<p>No. A prime that leaves remainder 1 when divided by 6 also leaves remainder 1
+when divided by 3, not 2. The two lists never overlap: of those
+<span class="fact" data-fact="into3">511</span> primes pointing at 3, exactly
+<span class="fact" data-fact="into3_covered">0</span> are covered themselves.</p>
+</details>
+</div>
+
+<h2 id="origin">5. Where the information comes from</h2>
+<p>Nothing on this page is an opinion. Everything was computed by the programs
+in <code>src/</code> of this repository, and re-checked by
+<code>verify.py</code>, which anyone can run in a few seconds with nothing
+installed.</p>
+<p>Two completely separate methods are used, on purpose. One works with the
+arrow picture. The other ignores the picture entirely: it takes every whole
+number up to 400000, breaks it into blocks, applies the recipe, multiplies, and
+divides — plain arithmetic. Where the two must agree, they are compared. They
+agree.</p>
+
+<h2 id="findings">6. What was found</h2>
+<p>Back to 3. It is covered — arrows come in. But a winner is built only from
+primes that are <em>themselves</em> covered inside it, and none of the primes
+that point at 3 qualify. So the arrows into 3 are useless, and:</p>
+<blockquote><p><strong>3 is covered, and it divides no winner at all.</strong></p></blockquote>
+<p>Searching every number up to 400000 turns up
+<span class="fact" data-fact="s_phi6">3</span> winners for this recipe — the
+smallest is <span class="fact" data-fact="phi6_smallest">100009</span> = 7²·13·157
+— and <span class="fact" data-fact="s_phi6_with3">0</span> of them are divisible
+by 3.</p>
+<p>The second thing found is how <em>many</em> primes are shut out. That count
+is not random: it is decided by a symmetry group attached to the recipe, and the
+answer is a plain fraction. Across the recipes tested,
+<span class="fact" data-fact="densities">12</span> different fractions come out —
+so the value 1/2 seen in earlier work was a property of the two recipes looked
+at, not of the problem.</p>
+<img src="figures/densities.svg" alt="Predicted against measured densities">
+<p>The third thing is where the surprise can happen at all. Sweeping 310
+recipes, the covered-but-excluded primes appear
+<span class="fact" data-fact="sweep_lost">14</span> times, and every single one
+of them is a <em>ramified</em> prime — one where the recipe develops a repeated
+root. Those are finitely many for each recipe, so the surprise is rare and
+locatable.</p>
+<p>And when a prime <em>does</em> divide a winner, you can prove it by exhibiting
+one: a closed loop of arrows <em>is</em> a winner, written out.</p>
+<img src="figures/certificate.svg" alt="A cycle written out as a certificate">
+
+<h2 id="checking">7. How do we know it is not wrong?</h2>
+<p>Two habits do most of the work.</p>
+<h3>A positive control</h3>
+<p>Finding zero of something proves nothing on its own — maybe the search is
+broken. So the same search is run on a recipe where the answer is known to be
+"lots". Using the sum-of-divisors-style recipe instead, the identical program
+finds <span class="fact" data-fact="control_sigmastar">261</span> winners
+divisible by 3. The search works; the zero above is real.</p>
+<h3>Recomputing something published</h3>
+<p><code>verify.py</code> rebuilds, from scratch, the list of numbers whose
+blocks divide the sum of their divisors, and compares it with the 49 terms
+published independently in the On-Line Encyclopedia of Integer Sequences as
+entry A175200. They match term for term. That is a check nobody here controls.</p>
+
+<h2 id="useful">8. What it is good for</h2>
+<p>Modestly: it tells you, from the recipe alone and without any searching,
+which primes can never show up. If you are hunting for winners, that removes a
+fixed fraction of the primes from the search before it starts — and it warns you
+that the obvious one-step rule is not the whole rule, so a search that trusts it
+will look in places where nothing can be found.</p>
+
+<h2 id="notclaim">9. What this does <em>not</em> say</h2>
+<div class="box no">
+<ul>
+<li>It does <strong>not</strong> say the sum-of-divisors game has excluded
+primes. It does not — every prime shows up there.</li>
+<li>It does <strong>not</strong> prove that the lower and upper bounds always
+meet. They met in every case tested, with no exception, but that is a
+measurement and it is written down as a conjecture, not a theorem.</li>
+<li>The fraction rule is <strong>not new mathematics</strong>: it is a classical
+theorem of Frobenius from 1896, applied here to a new object. That is stated
+plainly and credited.</li>
+<li>It says nothing about how <em>many</em> winners there are below a given
+size. A hypothesis about that was tested and <strong>failed</strong>, and the
+failure is recorded rather than hidden.</li>
+</ul>
+</div>
+
+<h2 id="glossary">Glossary</h2>
+<table>
+<tr><th>Word</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>radical</td><td>the product of the distinct primes of a number</td>
+<td>radical of 12 is 6</td></tr>
+<tr><td>order of a mod p</td><td>how many times you multiply <em>a</em> by
+itself before hitting 1, working with remainders after dividing by p</td>
+<td>2, 4, 1 — so the order of 2 mod 3 is 2</td></tr>
+<tr><td>root mod p</td><td>a remainder that makes the recipe come out to a
+multiple of p</td><td>2 is a root of x²−x+1 mod 3, since 4−2+1 = 3</td></tr>
+<tr><td>ramified prime</td><td>a prime where the recipe develops a repeated
+root</td><td>x²−x+1 becomes (x+1)² mod 3</td></tr>
+<tr><td>certificate</td><td>a short list of numbers that lets anyone confirm a
+claim by hand</td><td>13³ and 19², two divisions</td></tr>
+<tr><td>density</td><td>the long-run fraction of primes with a property</td>
+<td>half of all primes leave remainder 1 mod 4</td></tr>
+</table>
+
+<h2 id="biblio">Further reading</h2>
+<h3>Level 1 — start here, no formulas</h3>
+<ul>
+<li><a href="https://oeis.org/A175200">OEIS A175200</a> — the actual list of
+numbers whose radical divides the sum of their divisors. Click and scroll: this
+is the object, with nothing between you and it.</li>
+<li><a href="https://en.wikipedia.org/wiki/Chebotarev%27s_density_theorem">Wikipedia:
+Chebotarev's density theorem</a> — the modern form of the counting rule used in
+section 6, with the historical Frobenius version described in the first
+paragraphs.</li>
+</ul>
+<h3>Level 2 — a textbook, with the chapter</h3>
+<ul>
+<li>K. Ireland and M. Rosen, <em>A Classical Introduction to Modern Number
+Theory</em>, 2nd ed., Springer. Chapter 4 for orders and roots modulo a prime;
+Chapter 13 for cyclotomic polynomials, which are the recipes used here.</li>
+<li>B. Sury, "Frobenius and His Density Theorem for Primes", <em>Resonance</em>
+<strong>8</strong>(12) (2003) 33–41 — a short, readable account of exactly the
+counting rule of section 6.</li>
+</ul>
+<h3>Level 3 — what this compares itself against</h3>
+<ul>
+<li>P. Stevenhagen and H. W. Lenstra, "Chebotarëv and his density theorem",
+<em>Math. Intelligencer</em> <strong>18</strong> (1996) 26–37. The density
+statement used here is theirs, not ours.</li>
+<li>P. Pollack and C. Pomerance, "Prime-perfect numbers", <em>INTEGERS</em>
+<strong>12A</strong> (2012), Paper A14. The family that contains the
+sum-of-divisors case of this game, studied long before this work.</li>
+<li>C. Jordan (1872) on transitive permutation groups: the reason an
+irreducible recipe of degree 2 or more <em>always</em> excludes a positive
+fraction of the primes.</li>
+</ul>
+
+<footer>
+<p>Jorge Ellena Godoy. Code MIT, text and data CC BY 4.0.
+Every number on this page is regenerated and compared by <code>verify.py</code>;
+if the data changes and this page does not, the check fails.</p>
+</footer>
+</main>
+</body>
+</html>

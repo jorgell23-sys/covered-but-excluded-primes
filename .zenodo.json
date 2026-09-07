@@ -1,0 +1,22 @@
+{
+  "title": "Covered but excluded primes: which primes divide an element of { n : rad(n) | f(n) }",
+  "upload_type": "software",
+  "license": "cc-by-4.0",
+  "creators": [
+    {
+      "name": "Ellena Godoy, Jorge",
+      "affiliation": ""
+    }
+  ],
+  "description": "For a multiplicative f with f(q^e) = F(q^e) and F(0) = +-1, a prime has an incoming arrow in the covering digraph of f exactly when F has a root modulo that prime; the density of the primes without one is the proportion of fixed-point-free elements of the Galois group of F, which is the Frobenius density theorem (1896) applied to this object and is credited as classical. The new part: an incoming arrow is necessary but NOT sufficient for a prime to divide an element of S(f) = { n : rad(n) | f(n) }. For f(q^e) = q^(2e) - q^e + 1 the prime 3 has 511 primes pointing at it below 8000, none of them covered, and divides no element of S(f). Every such failure sits at a prime ramified in the splitting field of F, so finitely many per F. Primes lying on a directed cycle do divide an element, with a finite certificate a reader checks by hand. Includes verify.py, which reproduces every claim in seconds with no dependencies and cross-checks OEIS A175200.",
+  "keywords": [
+    "number theory",
+    "arithmetic functions",
+    "covering digraph",
+    "Frobenius density theorem",
+    "prime-perfect numbers",
+    "radical",
+    "computational number theory"
+  ],
+  "access_right": "open"
+}

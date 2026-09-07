@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Un primo cubierto que no divide a nada</title>
+<style>
+ :root{--ink:#16202b;--soft:#54636f;--line:#d3dbe3;--bg:#fbfcfd;--card:#ffffff;
+       --accent:#1d5fa8;--good:#1d7a53;--bad:#b3402a}
+ @media (prefers-color-scheme:dark){
+  :root{--ink:#e6edf4;--soft:#a4b3c1;--line:#33404d;--bg:#0e151d;--card:#141d27;
+        --accent:#6cabe8;--good:#4fbf8b;--bad:#e0755c}}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);
+      font:16px/1.65 ui-sans-serif,system-ui,"Segoe UI",Helvetica,Arial,sans-serif}
+ main{max-width:820px;margin:0 auto;padding:32px 20px 96px}
+ h1{font-size:31px;line-height:1.2;margin:.4em 0 .2em}
+ h2{font-size:22px;margin:2.2em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
+ h3{font-size:17px;margin:1.6em 0 .4em}
+ .lead{font-size:18px;color:var(--soft)}
+ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.94em}
+ .box{background:var(--card);border:1px solid var(--line);border-radius:10px;
+      padding:16px 18px;margin:18px 0}
+ .box.try{border-left:4px solid var(--accent)}
+ .box.no{border-left:4px solid var(--bad)}
+ table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px}
+ th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+ th{background:var(--card)}
+ img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0}
+ details{margin:10px 0}
+ summary{cursor:pointer;color:var(--accent)}
+ .lang{float:right;font-size:14px}
+ .fact{font-weight:600}
+ footer{margin-top:60px;color:var(--soft);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<p class="lang"><a href="../">English</a></p>
+
+<h1>Un primo cubierto — que no divide a nada</h1>
+<p class="lead">Cómo una regla sobre números primos puede ser cierta paso a paso
+y falsa en conjunto. Escrito para quien nunca vio esto.</p>
+
+<h2 id="pregunta">1. La pregunta, con peras y manzanas</h2>
+<p>Tomá un número entero, por ejemplo 12. Sus ladrillos primos son 2 y 3, porque
+12 = 2 × 2 × 3. Ahora sumá <em>todos</em> los números que dividen a 12:
+1 + 2 + 3 + 4 + 6 + 12 = 28.</p>
+<p>El juego es éste. Preguntamos: <strong>¿los ladrillos del número dividen
+también a esa suma?</strong> Los ladrillos de 12 son 2 y 3, y la suma es 28. El
+2 divide a 28, pero el 3 no — 28 ÷ 3 no da entero. Así que 12
+<strong>pierde</strong>.</p>
+<p>Probá con 6. Sus ladrillos son 2 y 3, y la suma de sus divisores es
+1 + 2 + 3 + 6 = 12. El 2 y el 3 dividen a 12. Así que 6 <strong>gana</strong>.</p>
+<p>Los ganadores forman una lista: 6, 24, 28, 40, 54, 96, 120, … alguien la
+catalogó hace años. La pregunta de esta página es otra, y más básica:</p>
+<blockquote><p><strong>¿Qué primos tienen permitido aparecer dentro de un
+ganador?</strong></p></blockquote>
+<p>El mismo juego se puede jugar con otra receta en vez de «suma de divisores».
+Acá se usa una receta que convierte un ladrillo <span class="mono">q</span>
+elevado a una potencia en otro número, y se hace la misma pregunta. Y la
+respuesta trae una sorpresa.</p>
+
+<h2 id="palabras">2. Cinco palabras, cada una con un número chico al lado</h2>
+<table>
+<tr><th>Palabra</th><th>Qué quiere decir</th><th>Ejemplo más chico</th></tr>
+<tr><td><strong>primo</strong></td><td>número mayor que 1 cuyos únicos
+divisores enteros son 1 y él mismo</td><td>2, 3, 5, 7, 11, 13</td></tr>
+<tr><td><strong>ladrillos</strong></td><td>los primos distintos que
+multiplicados dan el número</td><td>los de 12 = 2·2·3 son 2 y 3</td></tr>
+<tr><td><strong>receta</strong></td><td>una regla fija que convierte cada
+ladrillo y su potencia en un número</td><td>la nuestra convierte 7 en
+7² − 7 + 1 = 43</td></tr>
+<tr><td><strong>cubierto</strong></td><td>un primo <em>p</em> está cubierto
+cuando <em>algún</em> otro ladrillo produce un número que <em>p</em> divide</td>
+<td>el 3 está cubierto, porque 2² − 2 + 1 = 3</td></tr>
+<tr><td><strong>ganador</strong></td><td>número en el que cada ladrillo está
+cubierto por los <em>otros</em> ladrillos de ese mismo número</td>
+<td>100009 = 7² · 13 · 157</td></tr>
+</table>
+
+<h2 id="receta">3. La receta, paso a paso</h2>
+<p>Nuestra receta toma un ladrillo <span class="mono">q</span> elevado a la
+potencia <span class="mono">e</span> y devuelve
+<span class="mono">q<sup>2e</sup> − q<sup>e</sup> + 1</span>. Entonces:</p>
+<ul>
+<li>ladrillo 2 a la primera → 4 − 2 + 1 = <strong>3</strong></li>
+<li>ladrillo 7 a la primera → 49 − 7 + 1 = <strong>43</strong></li>
+<li>ladrillo 13 al cubo → 13⁶ − 13³ + 1 = <strong>4824613</strong>, que es
+19 × 271 × 937 — o sea que el 19 lo divide</li>
+</ul>
+<p>Para decidir si un número es ganador se escriben sus ladrillos, se les
+aplica la receta a cada uno, se multiplican los resultados y se comprueba que
+cada ladrillo divida a ese producto.</p>
+<p>Ahora dibujá flechas. Poné una flecha del ladrillo <span class="mono">q</span>
+al primo <span class="mono">p</span> cada vez que la receta aplicada a alguna
+potencia de <span class="mono">q</span> dé un número que <span class="mono">p
+</span> divide. Un número es ganador exactamente cuando, en el dibujo de sus
+propios ladrillos, <strong>a cada ladrillo le entra al menos una flecha</strong>.</p>
+<img src="../figures/disjoint.svg" alt="Dos filas de primos que nunca se cruzan">
+
+<h2 id="probalo">4. Uno que resolvés vos</h2>
+<div class="box try">
+<p><strong>¿Está cubierto el 3?</strong> Aplicá la receta al ladrillo 2, primera
+potencia: 2² − 2 + 1 = 3. ¿El 3 divide a 3?</p>
+<details><summary>Respuesta</summary>
+<p>Sí. Así que el primo 3 <em>está</em> cubierto: hay una flecha que le entra,
+desde el 2. De hecho hay muchas — contando sólo primos por debajo de 8000, son
+exactamente <span class="fact" data-fact="into3">511</span> los que le mandan
+flecha.</p>
+</details>
+</div>
+<div class="box try">
+<p><strong>Ahora la trampa.</strong> Todo primo que le manda flecha al 3 deja
+resto 2 al dividirlo por 3 — comprobalo con 2, 5, 11, 17, 23. Y todo primo que
+está <em>él mismo</em> cubierto deja resto 1 al dividirlo por 6 — comprobalo con
+7, 13, 19, 31. ¿Puede un primo hacer las dos cosas?</p>
+<details><summary>Respuesta</summary>
+<p>No. Un primo que deja resto 1 al dividirlo por 6 deja resto 1 al dividirlo
+por 3, no 2. Las dos listas no se tocan: de esos
+<span class="fact" data-fact="into3">511</span> primos que apuntan al 3, están
+cubiertos exactamente <span class="fact" data-fact="into3_covered">0</span>.</p>
+</details>
+</div>
+
+<h2 id="origen">5. De dónde sale la información</h2>
+<p>Nada de esta página es una opinión. Todo lo calcularon los programas de
+<code>src/</code> de este repositorio, y lo vuelve a comprobar
+<code>verify.py</code>, que cualquiera corre en segundos y sin instalar nada.</p>
+<p>Se usan dos métodos completamente separados, a propósito. Uno trabaja con el
+dibujo de flechas. El otro lo ignora por completo: toma todos los enteros hasta
+400000, los parte en ladrillos, aplica la receta, multiplica y divide —
+aritmética pelada. Donde los dos tienen que coincidir, se comparan. Coinciden.</p>
+
+<h2 id="hallazgos">6. Qué se encontró</h2>
+<p>Volvamos al 3. Está cubierto: le entran flechas. Pero un ganador se arma sólo
+con primos que estén <em>ellos mismos</em> cubiertos adentro, y ninguno de los
+que apuntan al 3 califica. Entonces esas flechas no sirven, y:</p>
+<blockquote><p><strong>el 3 está cubierto y no divide a ningún ganador.</strong></p></blockquote>
+<p>Buscando entre todos los números hasta 400000 aparecen
+<span class="fact" data-fact="s_phi6">3</span> ganadores para esta receta — el
+más chico es <span class="fact" data-fact="phi6_smallest">100009</span> =
+7²·13·157 — y <span class="fact" data-fact="s_phi6_with3">0</span> son
+divisibles por 3.</p>
+<p>Lo segundo que se encontró es <em>cuántos</em> primos quedan afuera. Esa
+cuenta no es azarosa: la decide un grupo de simetrías pegado a la receta, y la
+respuesta es una fracción exacta. Entre las recetas probadas salen
+<span class="fact" data-fact="densities">12</span> fracciones distintas — o sea
+que el valor 1/2 de trabajos anteriores era propiedad de las dos recetas que se
+habían mirado, no del problema.</p>
+<img src="../figures/densities.svg" alt="Densidad predicha contra medida">
+<p>Lo tercero es dónde puede ocurrir la sorpresa. Barriendo 310 recetas, los
+primos cubiertos-pero-excluidos aparecen
+<span class="fact" data-fact="sweep_lost">14</span> veces, y cada uno de ellos
+es un primo <em>ramificado</em> — uno donde la receta desarrolla una raíz
+repetida. Para cada receta son finitos, así que la sorpresa es rara y se puede
+ubicar.</p>
+<p>Y cuando un primo <em>sí</em> divide a un ganador, se demuestra exhibiendo
+uno: un lazo cerrado de flechas <em>es</em> un ganador, escrito.</p>
+<img src="../figures/certificate.svg" alt="Un ciclo escrito como certificado">
+
+<h2 id="comprobar">7. Cómo se sabe que no está mal</h2>
+<p>Dos costumbres hacen casi todo el trabajo.</p>
+<h3>Un control positivo</h3>
+<p>Encontrar cero de algo no prueba nada por sí solo — puede que la búsqueda
+esté rota. Así que la misma búsqueda se corre sobre una receta donde la
+respuesta se sabe que es «muchos». Con la receta del estilo suma-de-divisores,
+el programa idéntico encuentra
+<span class="fact" data-fact="control_sigmastar">261</span> ganadores divisibles
+por 3. La búsqueda funciona; el cero de arriba es real.</p>
+<h3>Recalcular algo publicado</h3>
+<p><code>verify.py</code> reconstruye desde cero la lista de números cuyos
+ladrillos dividen a la suma de sus divisores, y la compara con los 49 términos
+publicados de manera independiente en la Enciclopedia en Línea de Sucesiones de
+Enteros, entrada A175200. Coinciden término a término. Ése es un control que
+nadie de acá maneja.</p>
+
+<h2 id="sirve">8. Para qué sirve</h2>
+<p>Modestamente: dice, mirando sólo la receta y sin buscar nada, qué primos no
+pueden aparecer nunca. Si uno anda cazando ganadores, eso saca una fracción fija
+de los primos antes de empezar — y avisa que la regla obvia de un paso no es
+toda la regla, así que una búsqueda que le crea va a mirar donde no puede haber
+nada.</p>
+
+<h2 id="nodice">9. Lo que <em>no</em> dice</h2>
+<div class="box no">
+<ul>
+<li><strong>No</strong> dice que el juego de la suma de divisores tenga primos
+excluidos. No los tiene: ahí aparecen todos.</li>
+<li><strong>No</strong> demuestra que la cota de abajo y la de arriba siempre se
+toquen. Se tocaron en todos los casos probados, sin excepción, pero eso es una
+medición y queda escrito como conjetura, no como teorema.</li>
+<li>La regla de la fracción <strong>no es matemática nueva</strong>: es un
+teorema clásico de Frobenius de 1896, aplicado acá a un objeto nuevo. Se dice
+con todas las letras y se le da el crédito.</li>
+<li>No dice nada sobre <em>cuántos</em> ganadores hay por debajo de un tamaño
+dado. Se puso a prueba una hipótesis sobre eso y <strong>falló</strong>, y la
+falla queda registrada en vez de escondida.</li>
+</ul>
+</div>
+
+<h2 id="glosario">Glosario</h2>
+<table>
+<tr><th>Palabra</th><th>Significado</th><th>Ejemplo</th></tr>
+<tr><td>radical</td><td>producto de los primos distintos de un número</td>
+<td>el radical de 12 es 6</td></tr>
+<tr><td>orden de a módulo p</td><td>cuántas veces hay que multiplicar
+<em>a</em> por sí mismo hasta llegar a 1, trabajando con restos al dividir por
+p</td><td>2, 4, 1 — el orden de 2 módulo 3 es 2</td></tr>
+<tr><td>raíz módulo p</td><td>un resto que hace que la receta dé un múltiplo de
+p</td><td>2 es raíz de x²−x+1 módulo 3, porque 4−2+1 = 3</td></tr>
+<tr><td>primo ramificado</td><td>primo donde la receta desarrolla una raíz
+repetida</td><td>x²−x+1 se vuelve (x+1)² módulo 3</td></tr>
+<tr><td>certificado</td><td>lista corta de números con la que cualquiera
+confirma una afirmación a mano</td><td>13³ y 19², dos divisiones</td></tr>
+<tr><td>densidad</td><td>la fracción, a la larga, de primos con una
+propiedad</td><td>la mitad de los primos deja resto 1 módulo 4</td></tr>
+</table>
+
+<h2 id="biblio">Para seguir leyendo</h2>
+<h3>Nivel 1 — por acá se empieza, sin fórmulas</h3>
+<ul>
+<li><a href="https://oeis.org/A175200">OEIS A175200</a> — la lista de verdad de
+los números cuyo radical divide a la suma de sus divisores. Entrá y bajá: es el
+objeto, sin nada en el medio.</li>
+<li><a href="https://es.wikipedia.org/wiki/Teorema_de_densidad_de_Chebotariov">Wikipedia:
+teorema de densidad de Chebotariov</a> — la forma moderna de la regla de conteo
+de la sección 6, con la versión histórica de Frobenius en los primeros
+párrafos.</li>
+</ul>
+<h3>Nivel 2 — un libro de texto, con el capítulo</h3>
+<ul>
+<li>K. Ireland y M. Rosen, <em>A Classical Introduction to Modern Number
+Theory</em>, 2.ª ed., Springer. Capítulo 4 para órdenes y raíces módulo un
+primo; capítulo 13 para los polinomios ciclotómicos, que son las recetas que se
+usan acá.</li>
+<li>B. Sury, «Frobenius and His Density Theorem for Primes», <em>Resonance</em>
+<strong>8</strong>(12) (2003) 33–41 — un relato corto y legible de exactamente
+la regla de conteo de la sección 6.</li>
+</ul>
+<h3>Nivel 3 — contra qué se compara este trabajo</h3>
+<ul>
+<li>P. Stevenhagen y H. W. Lenstra, «Chebotarëv and his density theorem»,
+<em>Math. Intelligencer</em> <strong>18</strong> (1996) 26–37. El enunciado de
+densidad que se usa acá es de ellos, no nuestro.</li>
+<li>P. Pollack y C. Pomerance, «Prime-perfect numbers», <em>INTEGERS</em>
+<strong>12A</strong> (2012), Paper A14. La familia que contiene el caso
+suma-de-divisores de este juego, estudiada mucho antes que este trabajo.</li>
+<li>C. Jordan (1872) sobre grupos de permutaciones transitivos: la razón por la
+que una receta irreducible de grado 2 o más <em>siempre</em> excluye una
+fracción positiva de los primos.</li>
+</ul>
+
+<footer>
+<p>Jorge Ellena Godoy. Código MIT, texto y datos CC BY 4.0.
+Cada número de esta página lo regenera y compara <code>verify.py</code>; si los
+datos cambian y la página no, la comprobación falla.</p>
+</footer>
+</main>
+</body>
+</html>

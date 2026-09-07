@@ -1,0 +1,7 @@
+# S(f) up to 400000, computed as plain integers: factor n, apply f,
+# multiply, divide.  No digraph, no criterion.  n = 1 included.
+f(q^e) = q^(2e) - q^e + 1 : [1, 100009, 175273, 274939]
+  divisible by 3: 0
+POSITIVE CONTROL  f(q^e) = q^e + 1 : 344 elements
+  divisible by 3: 261
+  first twenty: [1, 6, 18, 20, 24, 45, 54, 60, 72, 90, 96, 100, 162, 180, 216, 272, 288, 320, 352, 360]

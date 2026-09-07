@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" width="100%" role="img" aria-label="A cycle as a certificate"><style>
+  :root{--ink:#16202b;--soft:#5a6a7a;--line:#c3ced9;--bg:#ffffff;
+        --good:#1d7a53;--bad:#b3402a;--mid:#2f6ea8}
+  @media (prefers-color-scheme: dark){
+   :root{--ink:#e6edf4;--soft:#9fb0c0;--line:#3d4a58;--bg:#0f1720;
+         --good:#4fbf8b;--bad:#e0755c;--mid:#67a6dd}}
+  text{font-family:ui-sans-serif,system-ui,Segoe UI,Helvetica,Arial,sans-serif}
+  .t{fill:var(--ink)} .s{fill:var(--soft)} .ln{stroke:var(--line);fill:none}
+</style>
+<rect width="720" height="260" fill="var(--bg)"/>
+<text x="20" y="30" class="t" font-size="17" font-weight="600">A cycle is a certificate</text>
+<text x="20" y="56" class="s" font-size="13">each arrow says the next prime divides f of the previous prime power; a third party checks it with 2 divisions</text>
+<circle cx="180" cy="130" r="52" fill="none" stroke="var(--mid)" stroke-width="2"/>
+<text x="180" y="126" class="t" font-size="20" text-anchor="middle">13^3</text>
+<text x="180" y="148" class="s" font-size="12" text-anchor="middle">= 2197</text>
+<circle cx="500" cy="130" r="52" fill="none" stroke="var(--mid)" stroke-width="2"/>
+<text x="500" y="126" class="t" font-size="20" text-anchor="middle">19^2</text>
+<text x="500" y="148" class="s" font-size="12" text-anchor="middle">= 361</text>
+<path d="M 236 108 Q 340 66 444 108" class="ln" stroke-width="2" marker-end="url(#a)"/>
+<path d="M 444 152 Q 340 194 236 152" class="ln" stroke-width="2" marker-end="url(#a)"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--line)"/></marker></defs>
+<text x="340" y="60" class="s" font-size="12" text-anchor="middle">19 divides f(13^3)</text>
+<text x="340" y="212" class="s" font-size="12" text-anchor="middle">13 divides f(19^2)</text>
+<text x="20" y="244" class="t" font-size="14">so n = 13^3 . 19^2 = 793117 is in S(f)</text>
+</svg>
