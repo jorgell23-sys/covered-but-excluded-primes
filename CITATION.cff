@@ -27,5 +27,13 @@ keywords:
 license: CC-BY-4.0
 repository-code: "https://github.com/jorgell23-sys/covered-but-excluded-primes"
 url: "https://jorgell23-sys.github.io/covered-but-excluded-primes/"
-version: 1.0.0
+doi: "10.5281/zenodo.22565634"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22565634"
+    description: "concept DOI, always the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22565635"
+    description: "DOI of version 1.0.0"
+version: 1.0.1
 date-released: 2026-09-06

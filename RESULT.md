@@ -298,6 +298,16 @@ If `f` is **not** local, i.e. `F(0) ≠ ±1`, loops appear: `p | f(p^a)` exactly
 when `p | F(0)`, and such primes are in `D(f)` by themselves. Theorem 1(b) then
 holds verbatim reading "root" without excluding `0`.
 
+## Citing
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22565634.svg)](https://doi.org/10.5281/zenodo.22565634)
+
+> Ellena Godoy, Jorge (2026). *Covered but excluded primes: which primes divide
+> an element of { n : rad(n) | f(n) }*. Zenodo. https://doi.org/10.5281/zenodo.22565634
+
+The DOI above is the **concept** DOI and always resolves to the latest version.
+
+
 ## 8. Reproducing
 
 ```bash

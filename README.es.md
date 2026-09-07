@@ -115,6 +115,16 @@ publicados de manera independiente como OEIS A175200.
 La explicación para no iniciados está en
 <https://jorgell23-sys.github.io/covered-but-excluded-primes/es/>.
 
+## Cómo citar
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22565634.svg)](https://doi.org/10.5281/zenodo.22565634)
+
+> Ellena Godoy, Jorge (2026). *Covered but excluded primes: which primes divide
+> an element of { n : rad(n) | f(n) }*. Zenodo. https://doi.org/10.5281/zenodo.22565634
+
+El DOI de arriba es el **de concepto** y siempre apunta a la última versión.
+
+
 ## Autor
 
 **Jorge Ellena Godoy** — <jorgell23@gmail.com>

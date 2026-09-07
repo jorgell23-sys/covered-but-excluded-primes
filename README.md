@@ -114,6 +114,16 @@ The explanation for non-specialists is at
 <https://jorgell23-sys.github.io/covered-but-excluded-primes/>
 (and in Spanish at `/es/`).
 
+## Citing
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22565634.svg)](https://doi.org/10.5281/zenodo.22565634)
+
+> Ellena Godoy, Jorge (2026). *Covered but excluded primes: which primes divide
+> an element of { n : rad(n) | f(n) }*. Zenodo. https://doi.org/10.5281/zenodo.22565634
+
+The DOI above is the **concept** DOI and always resolves to the latest version.
+
+
 ## Author
 
 **Jorge Ellena Godoy** — <jorgell23@gmail.com>

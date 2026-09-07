@@ -18,5 +18,17 @@
     "radical",
     "computational number theory"
   ],
-  "access_right": "open"
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.22565634",
+      "relation": "isVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/jorgell23-sys/covered-but-excluded-primes",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
 }
