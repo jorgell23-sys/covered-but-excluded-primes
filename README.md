@@ -73,7 +73,7 @@ cd covered-but-excluded-primes
 python verify.py
 ```
 
-It prints one `PASS`/`FAIL` line per check — **77** of them — and exits
+It prints one `PASS`/`FAIL` line per check — **81** of them — and exits
 non-zero if any fails.
 Check `[3]` is the theorem above, `[4]` is the ramification bound over a sweep
 of 310 polynomials, and check `[7]` is **external**: it recomputes
@@ -107,6 +107,8 @@ published independently as OEIS A175200.
 | `verify.py` | every claim, re-checked in seconds, no dependencies |
 | `src/excluded.py` | the criterion, the digraph, the cycles, the certificates |
 | `src/figures.py` | the figures, generated from the data |
+| `src/tables.py` | the tables in `data/`, generated from the data |
+| `src/counting.py` | section 6: the hypothesis that failed |
 | `data/` | the generated tables |
 | `docs/` | an explanation from scratch, for a reader new to the subject |
 

@@ -76,7 +76,7 @@ cd covered-but-excluded-primes
 python verify.py
 ```
 
-Imprime una línea `PASS`/`FAIL` por control —son **77**— y sale con código
+Imprime una línea `PASS`/`FAIL` por control —son **81**— y sale con código
 distinto de cero si algo falla. El control `[3]` es el teorema de arriba, el `[4]` es la cota de
 ramificación sobre un barrido de 310 polinomios, y el `[7]` es **externo**:
 recalcula `{ n : rad(n) | σ(n) }` desde cero y lo compara contra los 49 términos
@@ -109,6 +109,8 @@ publicados de manera independiente como OEIS A175200.
 | `verify.py` | cada afirmación, recomprobada en segundos, sin dependencias |
 | `src/excluded.py` | el criterio, el digrafo, los ciclos y los certificados |
 | `src/figures.py` | las figuras, generadas desde los datos |
+| `src/tables.py` | las tablas de `data/`, generadas desde los datos |
+| `src/counting.py` | la seccion 6: la hipotesis que se cayo |
 | `data/` | las tablas generadas |
 | `docs/` | una explicación desde cero, para quien no conoce el tema |
 

@@ -104,4 +104,10 @@
   PASS  docs/figures/densities.svg matches its generator
   PASS  docs/figures/disjoint.svg matches its generator
 
+[10] Section 6: the densities are recomputed and the rank correlations follow from the table
+  PASS  every density in data/counting.txt is reproduced right now
+  PASS  out of sample: arrow +0.238, excluded -0.467 -- the hypothesis that arrows govern |S(f)| is REFUTED
+  PASS  and neither reaches the 5% critical value 0.738 at n = 8, so the counting question stays open
+  PASS  the pair that formed the hypothesis: |S(Phi_3)| = 95 against |S(Phi_6)| = 3, with the same covered set
+
 ALL CHECKS PASS

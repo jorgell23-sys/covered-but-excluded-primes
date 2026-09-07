@@ -266,8 +266,10 @@ sequence like `2^k − 1` inside an arithmetic progression.
 
 ## 6. A hypothesis of our own that failed
 
+*Computed by `python src/counting.py` into `data/counting.txt`; `verify.py [10]` recomputes both densities live and rebuilds the rank correlations from that table, so nothing here is taken on trust.*
+
 `Φ₃` and `Φ₆` have essentially the **same** covered set — the primes `≡ 1 (mod
-6)`, excluded density 0.511 for both — and yet `|S(Φ₃)| = 95` against
+6)`, excluded density 0.5108 for both over the 138 primes below 800 — and yet `|S(Φ₃)| = 95` against
 `|S(Φ₆)| = 3` below 400000. That suggested:
 
 > **H.** What governs `|S(f)(x)|` is the **arrow density** of the digraph, not
@@ -313,4 +315,6 @@ The DOI above is the **concept** DOI and always resolves to the latest version.
 ```bash
 python verify.py            # every claim above, seconds, no dependencies
 python src/figures.py       # regenerates docs/figures/*.svg from the data
+python src/tables.py        # regenerates data/*.txt
+python src/counting.py      # regenerates data/counting.txt (minutes: it sieves to 400000)
 ```

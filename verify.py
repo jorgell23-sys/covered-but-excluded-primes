@@ -379,6 +379,48 @@ def main():
         check(on_disk == text, "docs/figures/" + name + " matches its generator",
               "" if on_disk == text else "regenerate with: python src/figures.py")
 
+    # --- [10] section 6 of RESULT.md: the hypothesis that failed -----------
+    print()
+    print("[10] Section 6: the densities are recomputed and the rank "
+          "correlations follow from the table")
+    path = os.path.join(ROOT, "data", "counting.txt")
+    if not os.path.exists(path):
+        check(False, "data/counting.txt is missing",
+              "regenerate with: python src/counting.py")
+    else:
+        import counting                                    # noqa: E402
+        table, wrong = [], []
+        for line in open(path, encoding="utf-8"):
+            if line.startswith("#") or not line.strip():
+                continue
+            name, excl, arr, size, formed = line.rstrip("\n").split("\t")
+            table.append((name, float(excl), float(arr), int(size),
+                          formed == "yes"))
+        by_name = {n: (F, f, formed) for n, F, f, formed in counting.FUNCTIONS}
+        for name, excl, arr, _size, formed in table:
+            F = by_name[name][0]
+            got_e, got_a = counting.densities(F)
+            if abs(got_e - excl) > 5e-4 or abs(got_a - arr) > 5e-4:
+                wrong.append((name, got_e, excl, got_a, arr))
+        check(len(table) == len(counting.FUNCTIONS) and not wrong,
+              "every density in data/counting.txt is reproduced right now",
+              "" if not wrong else "differs: %s" % wrong[:2])
+
+        out = [(a, s) for _n, _e, a, s, formed in table if not formed]
+        exc = [(e, s) for _n, e, _a, s, formed in table if not formed]
+        r_arrow = counting.spearman([a for a, _ in out], [s for _, s in out])
+        r_excl = counting.spearman([e for e, _ in exc], [s for _, s in exc])
+        check(abs(r_arrow - 0.238) < 0.001 and abs(r_excl + 0.467) < 0.001,
+              "out of sample: arrow %+.3f, excluded %+.3f -- the hypothesis "
+              "that arrows govern |S(f)| is REFUTED" % (r_arrow, r_excl))
+        check(abs(r_arrow) < 0.738 and abs(r_excl) < 0.738,
+              "and neither reaches the 5%% critical value 0.738 at n = %d, so "
+              "the counting question stays open" % len(out))
+        sizes = {n: s for n, _e, _a, s, _f in table}
+        check(sizes.get("Phi_3") == 95 and sizes.get("Phi_6") == 3,
+              "the pair that formed the hypothesis: |S(Phi_3)| = 95 against "
+              "|S(Phi_6)| = 3, with the same covered set")
+
     print()
     if FAILURES:
         print("FAILED %d:" % len(FAILURES))

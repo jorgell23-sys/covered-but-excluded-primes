@@ -1,0 +1,17 @@
+# Section 6 of RESULT.md.  |S(f)| counts n = 1, and is computed as
+# plain integers up to 400000.  Densities over the 139 primes below 800.
+# name	excluded density	arrow density	|S(f)|	formed the hypothesis?
+Phi_3	0.5108	0.7531	95	yes
+Phi_6	0.5108	0.4903	3	yes
+x+1	0.0000	0.6715	343	no
+x-1	0.0000	1.0000	331	no
+x^2+1	0.5108	0.6745	195	no
+Phi_5	0.7554	0.8467	45	no
+Phi_8	0.7770	0.6946	40	no
+x^3-x-1	0.3309	0.6288	29	no
+x^3+x^2-2x-1	0.6691	0.7546	3	no
+x^4-x-1	0.3453	0.6380	6	no
+# out of sample, 8 functions:
+# spearman(|S(f)|, arrow density)	+0.238
+# spearman(|S(f)|, excluded density)	-0.467
+# 5% critical value of Spearman at n = 8 is 0.738
