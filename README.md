@@ -1,5 +1,9 @@
 # Covered but excluded primes
 
+<!-- explicacion -->
+**New to this? It is explained from scratch, assuming nothing:**
+[English](https://jorgell23-sys.github.io/covered-but-excluded-primes/) · [Español](https://jorgell23-sys.github.io/covered-but-excluded-primes/es/)
+
 <!-- hallazgo:que -->
 ## What was found
 

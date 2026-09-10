@@ -1,5 +1,9 @@
 # Primos cubiertos y aun así excluidos
 
+<!-- explicacion -->
+**¿No sos del tema? Esto está explicado desde cero, sin dar nada por sabido:**
+[English](https://jorgell23-sys.github.io/covered-but-excluded-primes/) · [Español](https://jorgell23-sys.github.io/covered-but-excluded-primes/es/)
+
 <!-- hallazgo:que -->
 ## Qué se encontró
 
